@@ -21,7 +21,7 @@ namespace WebAPI.Controllers
             return GetResponse(await Mediator.Send(createShortUrl));
         }
 
-        [HttpPost]
+        [HttpPost("createcustomurl")]
         public async Task<IActionResult> CreateCustomUrl([FromBody] CreateCustomUrlCommand createCustomUrl)
         {
             return GetResponse(await Mediator.Send(createCustomUrl));

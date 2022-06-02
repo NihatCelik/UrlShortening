@@ -7,7 +7,8 @@ namespace Business.Helpers
     {
         public static string GenerateShortUrl(string longUrl)
         {
-            string host = new Uri(longUrl).Host;
+            Uri url = new Uri(longUrl);
+            string host = url.GetLeftPart(UriPartial.Authority);
 
             var chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
             var random = new Random();
@@ -15,7 +16,7 @@ namespace Business.Helpers
                 Enumerable.Repeat(chars, 8)
                 .Select(s => s[random.Next(s.Length)])
                 .ToArray());
-            return host + "/" + result;
+            return $"{host.Replace("-", ".")}/{result}/";
         }
     }
 }
